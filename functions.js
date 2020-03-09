@@ -5,7 +5,7 @@
  * - returns the book object that matches that id
  * - returns undefined if no matching book is found
  ****************************************************************/
-function getBookById(bookId, booksArray) {
+function getBookById(bookId, books) {
   return books.find(book => book.id === bookId);
 }
 
@@ -18,7 +18,7 @@ function getBookById(bookId, booksArray) {
  ****************************************************************/
 function getAuthorByName(authorName, authors) {
   return authors.find(
-    author => author.name.toLowercase() === authorName.toLowercase()
+    author => author.name.toLowerCase() === authorName.toLowerCase()
   );
 }
 
@@ -29,7 +29,7 @@ function getAuthorByName(authorName, authors) {
  *    [{ author: <NAME>, bookCount: <NUMBER_OF_BOOKS> }]
  ****************************************************************/
 function bookCountsByAuthor(authors) {
-  return authors.map(auth => ({
+  return authors.map(author=> ({
     author: author.name,
     bookCount: author.books.length
   }));
@@ -78,7 +78,7 @@ function titlesByAuthorName(authorName, authors, books) {
  * Note: assume there will never be a tie
  ****************************************************************/
 function mostProlificAuthor(authors) {
-  let prolificAuthor = authors[authors.length];
+  let prolificAuthor = authors[0];
 
   authors.forEach(author => {
     if (author.books.length > prolificAuthor.books.length) {
@@ -185,11 +185,11 @@ module.exports = {
  * want to manually test your code
  */
 
-// const authors = require("./authors.json");
-// const books = require("./books.json");
+const authors = require("./authors.json");
+const books = require("./books.json");
 
 // console.log(getBookById(12, books));
-// console.log(getAuthorByName("J.K. Rowling", authors));
+ console.log(getAuthorByName("J.K. Rowling", authors));
 // console.log(bookCountsByAuthor(authors));
 // console.log(booksByColor(books));
 // console.log(titlesByAuthorName("George R.R. Martin", authors, books));
